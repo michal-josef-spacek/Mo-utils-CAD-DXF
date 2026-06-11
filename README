@@ -2,16 +2,16 @@ NAME
     Mo::utils::CAD::DXF - Mo utilities for CAD::DXF data.
 
 SYNOPSIS
-     use Mo::utils::CAD::DXF qw(check_30x_text_len);
+     use Mo::utils::CAD::DXF qw(check_30x_text_length);
 
-     check_30x_text_len($self, $key, $length);
+     check_30x_text_length($self, $key, $length);
 
 DESCRIPTION
     Mo utilities for checking text values for DXF group codes 300-309.
 
 SUBROUTINES
-  "check_30x_text_len"
-     check_30x_text_len($self, $key, $length);
+  "check_30x_text_length"
+     check_30x_text_length($self, $key, $length);
 
     Check parameter defined by $key for maximum text length in DXF group
     codes 300-309. Escaped unicode sequences like "\U+00E9" are counted as
@@ -22,7 +22,7 @@ SUBROUTINES
     Returns undef.
 
 ERRORS
-     check_30x_text_len():
+     check_30x_text_length():
              Parameter '%s' has bad length.
                      Value: %s
                      Expected bytes length: %s
@@ -33,12 +33,12 @@ EXAMPLES
      use strict;
      use warnings;
 
-     use Mo::utils::CAD::DXF qw(check_30x_text_len);
+     use Mo::utils::CAD::DXF qw(check_30x_text_length);
 
      my $self = {
              'key' => 'fo\U+00E9',
      };
-     check_30x_text_len($self, 'key', 3);
+     check_30x_text_length($self, 'key', 3);
 
      # Print out.
      print "ok\n";
@@ -51,14 +51,14 @@ EXAMPLES
      use warnings;
 
      use Error::Pure;
-     use Mo::utils::CAD::DXF qw(check_30x_text_len);
+     use Mo::utils::CAD::DXF qw(check_30x_text_length);
 
      $Error::Pure::TYPE = 'Error';
 
      my $self = {
              'key' => 'fo\U+00E9',
      };
-     check_30x_text_len($self, 'key', 2);
+     check_30x_text_length($self, 'key', 2);
 
      # Print out.
      print "ok\n";

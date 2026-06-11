@@ -3,7 +3,7 @@ use warnings;
 
 use English;
 use Error::Pure::Utils qw(clean err_msg_hr);
-use Mo::utils::CAD::DXF qw(check_30x_text_len);
+use Mo::utils::CAD::DXF qw(check_30x_text_length);
 use Test::More 'tests' => 11;
 use Test::NoWarnings;
 
@@ -11,40 +11,40 @@ use Test::NoWarnings;
 my $self = {
 	'key' => 'foo',
 };
-my $ret = check_30x_text_len($self, 'key', 3);
+my $ret = check_30x_text_length($self, 'key', 3);
 is($ret, undef, 'Right bytes length is present (expected 3, real 3).');
 
 # Test.
 $self = {
 	'key' => 'foo',
 };
-$ret = check_30x_text_len($self, 'key', 10);
+$ret = check_30x_text_length($self, 'key', 10);
 is($ret, undef, 'Right bytes length is present (ascii, expected 10, real 3).');
 
 # Test.
 $self = {
 	'key' => 'foo',
 };
-$ret = check_30x_text_len($self, 'key', 3);
+$ret = check_30x_text_length($self, 'key', 3);
 is($ret, undef, 'Right bytes length is present (ascii, expected 3, real 3).');
 
 # Test.
 $self = {
 	'key' => 'fo\U+00E9',
 };
-$ret = check_30x_text_len($self, 'key', 3);
+$ret = check_30x_text_length($self, 'key', 3);
 is($ret, undef, 'Right bytes length is present (unicode, expected 3, real 3).');
 
 # Test.
 $self = {};
-$ret = check_30x_text_len($self, 'key');
+$ret = check_30x_text_length($self, 'key');
 is($ret, undef, "Right, key doesn't exists.");
 
 # Test.
 $self = {
 	'key' => undef,
 };
-$ret = check_30x_text_len($self, 'key');
+$ret = check_30x_text_length($self, 'key');
 is($ret, undef, "Value is undefined, that's ok.");
 
 # Test.
@@ -52,7 +52,7 @@ $self = {
 	'key' => 'fo\U+00E9',
 };
 eval {
-	check_30x_text_len($self, 'key', 2);
+	check_30x_text_length($self, 'key', 2);
 };
 is($EVAL_ERROR, "Parameter 'key' has bad length.\n",
 	"Parameter 'key' has bad length (fo\\U+00E9, 2 characters).");

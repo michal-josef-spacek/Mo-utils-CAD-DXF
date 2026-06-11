@@ -1,7 +1,7 @@
 Changes
 DXF.pm
-examples/check_30x_text_len_fail.pl
-examples/check_30x_text_len_ok.pl
+examples/check_30x_text_length_fail.pl
+examples/check_30x_text_length_ok.pl
 inc/Module/Install.pm
 inc/Module/Install/AuthorRequires.pm
 inc/Module/Install/AuthorTests.pm
@@ -20,6 +20,6 @@ META.yml
 README
 t/Mo-utils-CAD-DXF/01-use.t
 t/Mo-utils-CAD-DXF/02-version.t
-t/Mo-utils-CAD-DXF/03-check_30x_text_len.t
+t/Mo-utils-CAD-DXF/03-check_30x_text_length.t
 xt/Mo-utils-CAD-DXF/01-pod_coverage.t
 xt/Mo-utils-CAD-DXF/02-pod.t

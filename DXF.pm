@@ -7,11 +7,11 @@ use warnings;
 use Error::Pure qw(err);
 use Readonly;
 
-Readonly::Array our @EXPORT_OK => qw(check_30x_text_len);
+Readonly::Array our @EXPORT_OK => qw(check_30x_text_length);
 
 our $VERSION = 0.01;
 
-sub check_30x_text_len {
+sub check_30x_text_length {
 	my ($self, $key, $length) = @_;
 
 	_check_key($self, $key) && return;
@@ -53,9 +53,9 @@ Mo::utils::CAD::DXF - Mo utilities for CAD::DXF data.
 
 =head1 SYNOPSIS
 
- use Mo::utils::CAD::DXF qw(check_30x_text_len);
+ use Mo::utils::CAD::DXF qw(check_30x_text_length);
 
- check_30x_text_len($self, $key, $length);
+ check_30x_text_length($self, $key, $length);
 
 =head1 DESCRIPTION
 
@@ -63,9 +63,9 @@ Mo utilities for checking text values for DXF group codes 300-309.
 
 =head1 SUBROUTINES
 
-=head2 C<check_30x_text_len>
+=head2 C<check_30x_text_length>
 
- check_30x_text_len($self, $key, $length);
+ check_30x_text_length($self, $key, $length);
 
 Check parameter defined by C<$key> for maximum text length in DXF group codes
 300-309. Escaped unicode sequences like C<\U+00E9> are counted as characters.
@@ -76,7 +76,7 @@ Returns undef.
 
 =head1 ERRORS
 
- check_30x_text_len():
+ check_30x_text_length():
          Parameter '%s' has bad length.
                  Value: %s
                  Expected bytes length: %s
@@ -86,17 +86,17 @@ Returns undef.
 
 =head2 EXAMPLE1
 
-=for comment filename=check_30x_text_len_ok.pl
+=for comment filename=check_30x_text_length_ok.pl
 
  use strict;
  use warnings;
 
- use Mo::utils::CAD::DXF qw(check_30x_text_len);
+ use Mo::utils::CAD::DXF qw(check_30x_text_length);
 
  my $self = {
          'key' => 'fo\U+00E9',
  };
- check_30x_text_len($self, 'key', 3);
+ check_30x_text_length($self, 'key', 3);
 
  # Print out.
  print "ok\n";
@@ -106,20 +106,20 @@ Returns undef.
 
 =head2 EXAMPLE2
 
-=for comment filename=check_30x_text_len_fail.pl
+=for comment filename=check_30x_text_length_fail.pl
 
  use strict;
  use warnings;
 
  use Error::Pure;
- use Mo::utils::CAD::DXF qw(check_30x_text_len);
+ use Mo::utils::CAD::DXF qw(check_30x_text_length);
 
  $Error::Pure::TYPE = 'Error';
 
  my $self = {
          'key' => 'fo\U+00E9',
  };
- check_30x_text_len($self, 'key', 2);
+ check_30x_text_length($self, 'key', 2);
 
  # Print out.
  print "ok\n";
