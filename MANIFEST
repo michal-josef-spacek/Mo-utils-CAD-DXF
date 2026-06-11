@@ -1,5 +1,7 @@
 Changes
 DXF.pm
+examples/check_30x_text_len_fail.pl
+examples/check_30x_text_len_ok.pl
 inc/Module/Install.pm
 inc/Module/Install/AuthorRequires.pm
 inc/Module/Install/AuthorTests.pm

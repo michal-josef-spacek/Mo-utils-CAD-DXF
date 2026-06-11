@@ -1,0 +1,90 @@
+NAME
+    Mo::utils::CAD::DXF - Mo utilities for CAD::DXF data.
+
+SYNOPSIS
+     use Mo::utils::CAD::DXF qw(check_30x_text_len);
+
+     check_30x_text_len($self, $key, $length);
+
+DESCRIPTION
+    Mo utilities for checking text values for DXF group codes 300-309.
+
+SUBROUTINES
+  "check_30x_text_len"
+     check_30x_text_len($self, $key, $length);
+
+    Check parameter defined by $key for maximum text length in DXF group
+    codes 300-309. Escaped unicode sequences like "\U+00E9" are counted as
+    characters.
+
+    Put error if check isn't ok.
+
+    Returns undef.
+
+ERRORS
+     check_30x_text_len():
+             Parameter '%s' has bad length.
+                     Value: %s
+                     Expected bytes length: %s
+                     Real bytes length: %s
+
+EXAMPLES
+  EXAMPLE1
+     use strict;
+     use warnings;
+
+     use Mo::utils::CAD::DXF qw(check_30x_text_len);
+
+     my $self = {
+             'key' => 'fo\U+00E9',
+     };
+     check_30x_text_len($self, 'key', 3);
+
+     # Print out.
+     print "ok\n";
+
+     # Output:
+     # ok
+
+  EXAMPLE2
+     use strict;
+     use warnings;
+
+     use Error::Pure;
+     use Mo::utils::CAD::DXF qw(check_30x_text_len);
+
+     $Error::Pure::TYPE = 'Error';
+
+     my $self = {
+             'key' => 'fo\U+00E9',
+     };
+     check_30x_text_len($self, 'key', 2);
+
+     # Print out.
+     print "ok\n";
+
+     # Output like:
+     # #Error [..DXF.pm:?] Parameter 'key' has bad length.
+
+DEPENDENCIES
+    Exporter, Error::Pure, Readonly.
+
+SEE ALSO
+    Mo  Micro Objects. Mo is less.
+
+REPOSITORY
+    <https://github.com/michal-josef-spacek/Mo-utils-CAD-DXF>
+
+AUTHOR
+    Michal Josef Špaček <mailto:skim@cpan.org>
+
+    <http://skim.cz>
+
+LICENSE AND COPYRIGHT
+    © 2026 Michal Josef Špaček
+
+    BSD 2-Clause License
+
+VERSION
+    0.01
+
