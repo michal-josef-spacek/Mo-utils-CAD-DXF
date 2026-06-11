@@ -17,6 +17,7 @@ sub check_30x_text_length {
 	_check_key($self, $key) && return;
 
 	my $value = $self->{$key};
+	$value =~ s/\^[MJI]//msg;
 	$value =~ s/\\U\+([0-9A-Fa-f]+)/chr(hex($1))/eg;
 	if (length($value) > $length) {
 		err "Parameter '".$key."' has bad length.",

@@ -4,7 +4,7 @@ use warnings;
 use English;
 use Error::Pure::Utils qw(clean err_msg_hr);
 use Mo::utils::CAD::DXF qw(check_30x_text_length);
-use Test::More 'tests' => 11;
+use Test::More 'tests' => 12;
 use Test::NoWarnings;
 
 # Test.
@@ -34,6 +34,13 @@ $self = {
 };
 $ret = check_30x_text_length($self, 'key', 3);
 is($ret, undef, 'Right bytes length is present (unicode, expected 3, real 3).');
+
+# Test.
+$self = {
+	'key' => 'f^M^J^I^Io\U+00E9',
+};
+$ret = check_30x_text_length($self, 'key', 3);
+is($ret, undef, 'Right bytes length is present (unicode + control, expected 3, real 3).');
 
 # Test.
 $self = {};
